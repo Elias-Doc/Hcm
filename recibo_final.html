@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head><title>Recibo Final</title></head>
+<body>
+<h1>Recibo Final</h1>
+{% if consulta %}
+  <p>Nome: {{ consulta.nome }}</p>
+  <p>Idade: {{ consulta.idade }}</p>
+  <p>Processo: {{ consulta.processo }}</p>
+  <p>Data Pedido: {{ consulta.data_pedido }}</p>
+  <p>Data Consulta: {{ consulta.data_consulta }}</p>
+  <p>Hora Consulta: {{ consulta.hora_consulta }}</p>
+  <p>Ficha: {{ consulta.ficha }}</p>
+  <p>Status: {{ consulta.status }}</p>
+{% else %}
+  <p>Consulta não encontrada.</p>
+{% endif %}
+<a href="/gestor">Voltar</a>
+</body>
+</html>

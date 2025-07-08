@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head><title>Painel Gestor</title></head>
+<body>
+<h1>Painel Gestor</h1>
+
+<h2>Pedidos Pendentes</h2>
+{% if pedidos %}
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr><th>Nome</th><th>Idade</th><th>Processo</th><th>Data Pedido</th><th>Ações</th></tr>
+  {% for pedido in pedidos %}
+  <tr>
+    <td>{{ pedido.nome }}</td>
+    <td>{{ pedido.idade }}</td>
+    <td>{{ pedido.processo }}</td>
+    <td>{{ pedido.data_pedido }}</td>
+    <td>
+      <form method="POST">
+        <input type="hidden" name="id" value="{{ pedido.id }}">
+        Data Consulta: <input type="date" name="data_consulta" required>
+        Hora Consulta: <input type="time" name="hora_consulta" required>
+        Ficha: <input name="ficha" required>
+        <button type="submit">Confirmar</button>
+      </form>
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>Nenhum pedido pendente.</p>
+{% endif %}
+
+<h2>Consultas Confirmadas</h2>
+{% if consultas %}
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr><th>Nome</th><th>Data Consulta</th><th>Hora Consulta</th><th>Ficha</th><th>Status</th><th>Recibo</th></tr>
+  {% for consulta in consultas %}
+  <tr>
+    <td>{{ consulta.nome }}</td>
+    <td>{{ consulta.data_consulta }}</td>
+    <td>{{ consulta.hora_consulta }}</td>
+    <td>{{ consulta.ficha }}</td>
+    <td>{{ consulta.status }}</td>
+    <td><a href="{{ url_for('recibo', id=consulta.id) }}" target="_blank">Ver Recibo</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>Nenhuma consulta confirmada.</p>
+{% endif %}
+
+<a href="/">Voltar</a>
+</body>
+</html>
